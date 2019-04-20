@@ -130,11 +130,11 @@ public abstract void draw(@NonNull Canvas canvas, CharSequence text,
 这三行文本，第一行在`平`字上加一个`ImageSpan`，第二行在`平`和`等`各加一个，第三行把后面的`、`也加上`ImageSpan`。可以明显看出省略号被`ImageSpan`给`吃`掉了。  
 要解决这个问题就要知道啥时候是倒末尾了，不能在往后画了。其实`TextView`的`Layout`中有`getEllipsisStart`和`getEllipsisCount`可以知道哪里被省略了，但`draw`里面并没有`TextView`的引用，而且你拿到的`text`里的内容虽然变了，但它的长度还是折叠之前的长度（WTF），那怎么办呢？  
 ![](Ellipsize2.png)  
-不知道你有没有想过，那既然`text`被折叠了，但它的长度又没变，那省略号后面的是啥东西呢。
+不知道你有没有想过，那既然`text`被折叠了，但它的长度又没变，那省略号后面的是啥东西呢。  
 ![](Ellipsize3.png)  
-这个没问题。
+这个没问题。  
 ![](Ellipsize4.png)  
-这个就是我们折叠后的省略号，它不是三个`'.'`，而是一个字符`'…'`
+这个就是我们折叠后的省略号，它不是三个`'.'`，而是一个字符`'…'`  
 ![](Ellipsize5.png)  
 再往后，一直到最后就都是这玩意儿了`'\uFEFF'`，上网一查，原来是 `BOM（Byte Order Mark）`，`Big-Endian` 时为`'\uFEFF'`，`Little-Endian`时为`'\uFFFE'`，这些字符不影响显示，但影响长度判断，需要去掉。在`draw`的前面加上
 ```java
