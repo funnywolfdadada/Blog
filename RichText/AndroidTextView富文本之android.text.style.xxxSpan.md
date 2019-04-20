@@ -17,23 +17,23 @@ TextPaint 继承自 Paint，这就给了我们一个机会去操纵画笔，设�
 附上解决问题链接： 
 [如何实现 “中间这几个字要加粗，但是不要太粗，比较纤细的那种粗” ？](https://juejin.im/post/597d88f75188257fc2177c36)
 #### 2、UpdateAppearance
-![](https://user-gold-cdn.xitu.io/2019/3/3/16941bbf77287332?w=536&h=228&f=png&s=53413)
+![](UpdateAppearance.png)
 这个接口是空的，只是用来标识的，表示 Span 会改变字体的外貌（颜色、形状等），
 `UpdateLayout` 稍后说，其他的 Span 都实现 `CharacterStyle` 的 `updateDrawState` 方法，并对画笔进行设置，达到变换字体外观的目的。
 #### 3、ClickableSpan
 增加了一个抽象方法`public abstract void onClick(@NonNull View widget);`，用于响应点击事件（需要外部配合，如 `LinkMovementMethod`或`OnTouchListener`）。  
 `URLSpan` 继承自它，存储一个 URL，点击时用 `startActivity` 打开。
 #### 4、UpdateLayout
-![](https://user-gold-cdn.xitu.io/2019/3/3/16941c19b9436d19?w=541&h=344&f=png&s=77047)
+![](UpdateLayout.png)
 跟 `UpdateAppearance` 一样是一个标识，从名字就能看出来，它还改变布局（位置、大小等），
 唯一的继承类 `MetricAffectingSpan`有一个抽象方法
 `public abstract void updateMeasureState(@NonNull TextPaint textPaint);`，用于改变字体的大小等属性。
 #### 5、ReplacementSpan （画布给你，你行你来画）
-![](https://user-gold-cdn.xitu.io/2019/3/3/16941cd28204fef2?w=532&h=86&f=png&s=19767)
+![](ReplacementSpan.png)
 之前的 Span 我们只能设置 `Paint`，能做的事情很有限， `ReplacementSpan`比`MetricAffectingSpan`更进一步，直接自己接管了绘制的任务，它有两个抽象方法`public abstract int getSize(Paint paint, CharSequence text, int start, int end, Paint.FontMetricsInt fm);`和`public abstract void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint);`分别用于确定绘制范围和绘制内容。这就使得`ReplacementSpan`有很大的灵活性，想画啥就画啥，经常用于画内联的图片之类的东西。
 #### 6、其他的 Span
 `ParagraphStyle`相关的也有很多 Span，主要用于段落样式的处理，我也没用过，就不瞎说了
-![](https://user-gold-cdn.xitu.io/2019/3/3/16941e7a56b3fb00?w=774&h=662&f=png&s=162630)
+![](ParagraphStyle.png)
 还有`TtsSpan`、`SuggestionSpan`、`EasyEditSpan`、`SpellCheckSpan`、`SuggestionRangeSpan` 。。。
 
 ### 最后
