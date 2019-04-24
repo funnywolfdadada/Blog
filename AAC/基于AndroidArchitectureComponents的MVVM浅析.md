@@ -212,7 +212,7 @@ public class ShowCountFragment extends Fragment {
 
 ## 3、进一步了解 AAC
 
-**配合源码使用，效果更佳！**特别推荐使用 androidx 来看源码，会清晰方便很多。
+**配合源码使用，效果更佳！** 特别推荐使用 androidx 来看源码，会清晰方便很多。
 
 ### 3.1、Lifecycle
 
