@@ -7,3 +7,4 @@
 - [Android TextView 富文本之 ImageSpan.md](https://github.com/funnywolfdadada/Blog/blob/master/RichText/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8BImageSpan/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8BImageSpan.md)
 - [Android TextView 富文本之 ClickableSpan](https://github.com/funnywolfdadada/Blog/blob/master/RichText/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8BClickableSpan/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8BClickableSpan.md)
 - [基于 Android Architecture Components 的 MVVM 浅析](https://github.com/funnywolfdadada/Blog/blob/master/AAC/%E5%9F%BA%E4%BA%8EAndroidArchitectureComponents%E7%9A%84MVVM%E6%B5%85%E6%9E%90.md)
+- [把 LiveData 用于事件传递那些坑](https://juejin.im/post/5cdff0de5188252f5e019bea)
