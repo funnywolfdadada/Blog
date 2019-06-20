@@ -4,7 +4,7 @@
 当我们提到 RxJava 时会想到什么，**异步**、**事件流**、**响应式编程**、**观察者模式**、**链式编程**等等。对于 Android 开发者来说，在 kotlin 出现之前，RxJava 的编程方式的确给我们带来了**很爽**的编程体验，但是在不断的使用过程，感觉 RxJava 其实也没那么**爽**，反而有时候会觉得不是那么的方便，或者说它并没有我们想象的那么「强大」。最近也看了几篇很好的文章，也使我进一步加深么对 RxJava 的理解，这里也推荐给大家：  
 [RxJava 沉思录（一）：你认为 RxJava 真的好用吗？](https://juejin.im/post/5b8f536c5188255c352d3528)  
 [我为什么不再推荐RxJava](https://juejin.im/post/5cd04b6e51882540e53fdfa2)  
-[More of RxJava](https://juniperphoton.dev/more-of-rxjava/)
+[More of RxJava](https://juniperphoton.dev/more-of-rxjava/)  
 这里我只是简单谈一谈自己对 RxJava 的理解和自己的一些看法，欢迎大家批评指正！！
 
 ## 异步处理
