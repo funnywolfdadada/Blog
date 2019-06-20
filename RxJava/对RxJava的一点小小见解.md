@@ -164,8 +164,8 @@ protected final void fail(Throwable t) {
 ## RxJava 的设计模式
 
 ### 适配器模式
-在 RxJava 的世界里，一切其他事件都可以转化成 `Observable` 或者更准确的说是**可观察者**（如果考虑上 `Single`、`Maybe`、`Flowable` 等）。
-![](./RxJavaAdapter.png)
+在 RxJava 的世界里，一切其他事件都可以转化成 `Observable` 或者更准确的说是**可观察者**（如果考虑上 `Single`、`Maybe`、`Flowable` 等）。  
+![](./RxJavaAdapter.png)  
 RxJava 用 `just`、`merge`、`range`、`timer`、`zip` 等等静态方法和 `Observable` 的一些子类实现了外部世界到 RxJava 世界的适配工作，还一个典型的例子就是 `Retrofit` 原生返回的 `Call` 到 `Observable` 的适配，具体代码在 `retrofit2.adapter.rxjava2.RxJava2CallAdapter` 中，核心函数 `adapt()` 如下。
 ``` java
 public Object adapt(Call<R> call) {
@@ -212,13 +212,13 @@ public Object adapt(Call<R> call) {
 
 ### 装饰者模式
 RxJava 主要是用装饰者模式实现了整条链的建立和事件传递。
-![](./ObservableMap.png)
+![](./ObservableMap.png)  
 举个简单的例子，`map` 操作符在**建立链**的时候返回的是 `ObservableMap`，和上游的源一样是 `Observable` 的一个子类。它在被 `subscribe` 的时候会去调用 `subscribeActual` 方法，在这里调用 `source.subscribe(new MapObserver<T, U>(t, function))`，调用到源的 `subscribe` 方法，从而实现**订阅**从下游往上游传递，同时也实现了自己的操作逻辑，把上游订阅给自己的一个静态内部类 `MapObserver`。`MapObserver` 是对下游观察者进行了一次装饰，和其他观察者一样都实现了 `Observer`，在收到上游的**事件传递** `onNext(T t)` 时，先调用 `Function<? super T, ? extends U> mapper` 实现自己的逻辑，再分发给下游 `downstream.onNext(v)`。
 
 ### 观察者模式？
 用 RxJava 的基本都知道观察者模式，但从上面的分析也可以看出，不管是异步操作，还是事件流的建立和处理，和观察者模式的关系并不是很密切，这可能也是我们对 RxJava 的误解之一。  
 「观察者设计模式定义了对象间的一种一对多的组合关系，以便一个对象的状态发生变化时，所有依赖于它的对象都得到通知并自动刷新」。  
-![](./Observable.png)
+![](./Observable.png)  
 我们平时用的 `Observable` 和观察者模式关系不大，简单的看代码就能发现，`Observable` 只存了一个上下游，也就是说往下游发事件只能有一个下游的接收者，这哪儿是什么观察者模式，只是套用了这一名字而已。而且我们用的基本都是些 `Cold Observable`，简单点说就是「只有当有订阅者订阅的时候，Cold Observable 才开始执行发射数据流的代码，并且每个订阅者订阅的时候都独立的执行一遍数据流代码」，所以这就更说明不是观察者模式了，而 `Hot Observable` 则是「不管有没有订阅者订阅，他们创建后就开发发射数据流。一个比较好的示例就是 鼠标事件。不管系统有没有订阅者监听鼠标事件，鼠标事件一直在发生，当有订阅者订阅后，从订阅后的事件开始发送给这个订阅者，之前的事件这个订阅者是接受不到的；如果订阅者取消订阅了，鼠标事件依然继续发射。」(Cold/Hot Observable 的区别这里不再过多赘述)。  
 而在 RxJava 里真正称得上是观察者模式的就是 `Subject`，大概看下简介「Represents an {@link Observer} and an {@link Observable} at the same time, allowing multicasting events from a single source to multiple child {@code Observer}s.」  
 我们平时用的多的 `PublishSubject` 实现了 `Subject`，内部存储了 `final AtomicReference<PublishDisposable<T>[]> subscribers` 来保存所有的观察者，然后手动 `onNext` 时遍历 `subscribers` 的 `onNext` 将事件发送出去。
