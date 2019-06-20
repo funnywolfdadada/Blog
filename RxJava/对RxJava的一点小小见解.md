@@ -131,7 +131,7 @@ public final <R> Observable<R> map(Function<? super T, ? extends R> mapper) {
 它调用了上游 `source` 的 `subscribe` 订阅自己的一个静态内部类 `MapObserver`，同时也会把下游的 `Observer` 保存到 `MapObserver` 中，然后 `source` 也会在自己的 `subscribe` 方法中调 `subscribeActual` 方法，从将`订阅`一级一级往上游传递。和「流的建立」不同的是，不管 RxJava 链是否是缓存的，每次调用 `subscribe` 都会重新生成一堆新的对象实例，这也是 RxJava 被人诟病的地方之一，所以尽量不要在频繁调用的函数中使用 RxJava。
 
 ### 事件处理
-事件处理可以说是 RxJava 的精髓所在，说简单点就是在上游 `onNext` 发送事件时，事件一级一级被处理，并往下游传递的过程。
+事件处理可以说是 RxJava 的精髓所在，说简单点就是在上游 `onNext` 发送事件时，事件一级一级被处理，并往下游传递的过程。  
 ![](./onNext.png)
 ``` java
 public void onNext(T t) {
