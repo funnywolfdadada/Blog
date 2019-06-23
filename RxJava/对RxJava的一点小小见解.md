@@ -50,6 +50,17 @@ Observable.just(1)
     .subscribe { log("doRxJava: Result = $it") }
 ```
 RxJava 的链式写法比单纯的回调嵌套要更加清晰，更加容易理解，也更好维护和更改代码。当然这种链接调用也不是 RxJava 独有的，`Promise` 也可以使用链式调用实现异步，我对 `Promise` 没有深入了解，这里就不多阐述了。  
+  
+其实这种链式调用写异步的方式实现起来很简单，Demo 和一个不到一百行的实现可以参考下：[RunList](https://github.com/funnywolfdadada/RunList)，用起来是这样的。  
+
+``` java
+RunList.runOnBackground({ integer -> getDataA(integer) }, 1)
+    .runOnUiThread { string -> doSomethingOnMainA(string) }
+    .runOnBackground { integer -> getDataB(integer) }
+    .runOnUiThread { string -> log("doRunList: Result = ${doSomethingOnMainB(string)}") }
+    .start()
+```
+
 但不管怎么写，这种显式地用回调的方式都让人感觉很不舒服，让我们回归本质，这其实就是一个「串行」操作，依次调用不同的函数而已，只不过要考虑线程切换的问题，让我们用同步的代码写一下看看（暂不考虑线程切换问题）。
 ``` java
 val a = getDataA(1)
@@ -222,3 +233,6 @@ RxJava 主要是用装饰者模式实现了整条链的建立和事件传递。
 我们平时用的 `Observable` 和观察者模式关系不大，简单的看代码就能发现，`Observable` 只存了一个上下游，也就是说往下游发事件只能有一个下游的接收者，这哪儿是什么观察者模式，只是套用了这一名字而已。而且我们用的基本都是些 `Cold Observable`，简单点说就是「只有当有订阅者订阅的时候，Cold Observable 才开始执行发射数据流的代码，并且每个订阅者订阅的时候都独立的执行一遍数据流代码」，所以这就更说明不是观察者模式了，而 `Hot Observable` 则是「不管有没有订阅者订阅，他们创建后就开发发射数据流。一个比较好的示例就是 鼠标事件。不管系统有没有订阅者监听鼠标事件，鼠标事件一直在发生，当有订阅者订阅后，从订阅后的事件开始发送给这个订阅者，之前的事件这个订阅者是接受不到的；如果订阅者取消订阅了，鼠标事件依然继续发射。」(Cold/Hot Observable 的区别这里不再过多赘述)。  
 而在 RxJava 里真正称得上是观察者模式的就是 `Subject`，大概看下简介「Represents an {@link Observer} and an {@link Observable} at the same time, allowing multicasting events from a single source to multiple child {@code Observer}s.」  
 我们平时用的多的 `PublishSubject` 实现了 `Subject`，内部存储了 `final AtomicReference<PublishDisposable<T>[]> subscribers` 来保存所有的观察者，然后手动 `onNext` 时遍历 `subscribers` 的 `onNext` 将事件发送出去。
+
+## 总结
+简单总结一下，RxJava 的事件流处理能力很强大，但 RxJava 并不只是为了做异步的（当然 RxJava 做异步也不弱），只不过在 Android 领域，我们多数情况下只是把 RxJava 当作异步请求数据的工具，并没有发挥它的真实实力，像按钮去抖动，监听 EditText 延时请求数据等才是 RxJava 的正确使用姿势。目前来看，RxJava 「滥用」的情况还是很普遍的，很多地方都是简单做一下异步而已，随着 Kotlin 的崛起和协程的发展，这种情况一定会慢慢改善。
