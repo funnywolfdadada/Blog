@@ -160,7 +160,7 @@ private static void handleBr(Editable text) {
 日常工作中，使用最多的可能就是 `a` 标签了，打开图片、视频和页面等，都可能需要我们自己处理点击和跳转，这里就以 `a` 标签为例进行说明。  
 之前说过 `Html` 工具支持 `a` 标签，而且我们自定义的 `mTagHandler` 优先级比较低，这里就需要坐下简单的预处理，把 `a` 标签替换成 `Html` 工具不认识的就行。  
 ``` java
-private static final String A_PATTERN = "<\\s*[aA] (.*)>(.+)<\\s*/[aA]\\s*>";
+private static final String A_PATTERN = "<\s*[aA] (.*?)>(.*?)<\s*/[aA]\s*>";
 private static final String SELF_DEF_A_TAG = "zdl_a";
 private static final String A_REPLACE = "<" + SELF_DEF_A_TAG +" $1>$2</" + SELF_DEF_A_TAG + ">";
 
