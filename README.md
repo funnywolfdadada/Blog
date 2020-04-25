@@ -1,13 +1,16 @@
 # Blog
 存一些写的博客总结之类的东西，欢迎 Start &amp; Fork！
 [掘金主页](https://juejin.im/user/5c63bce5e51d4527047123f7)
-[简书主页](https://www.jianshu.com/u/d6f790205c2b)  
+
 ## 目前已有的博客：
-- [Android TextView 富文本之 android.text.style.xxxSpan](https://github.com/funnywolfdadada/Blog/blob/master/RichText/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8Bandroid.text.style.xxxSpan/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8Bandroid.text.style.xxxSpan.md)
-- [Android TextView 富文本之 ImageSpan](https://github.com/funnywolfdadada/Blog/blob/master/RichText/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8BImageSpan/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8BImageSpan.md)
-- [Android TextView 富文本之 ClickableSpan](https://github.com/funnywolfdadada/Blog/blob/master/RichText/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8BClickableSpan/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8BClickableSpan.md)
-- [Android TextView 富文本之 Html 标签的简单解析](https://github.com/funnywolfdadada/Blog/blob/master/RichText/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8BHtml%E6%A0%87%E7%AD%BE%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90/AndroidTextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8BHtml%E6%A0%87%E7%AD%BE%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90.md)
-- [基于 Android Architecture Components 的 MVVM 浅析](https://github.com/funnywolfdadada/Blog/blob/master/AAC/%E5%9F%BA%E4%BA%8EAndroidArchitectureComponents%E7%9A%84MVVM%E6%B5%85%E6%9E%90.md)
+- [Android TextView 富文本之 android.text.style.xxxSpan](https://juejin.im/post/5c7b40fee51d453ecd04a23c)
+- [Android TextView 富文本之 ImageSpan](https://juejin.im/post/5c7d2267e51d45523b0f72a6)
+- [Android TextView 富文本之 ClickableSpan](https://juejin.im/post/5c84902ce51d453ce668b750)
+- [Android TextView 富文本之 Html 标签的简单解析](https://juejin.im/post/5d46535ce51d45620346b853)
+- [基于 Android Architecture Components 的 MVVM 浅析](https://juejin.im/post/5cba9b2ef265da038145d51a)
 - [把 LiveData 用于事件传递那些坑](https://juejin.im/post/5cdff0de5188252f5e019bea)
-- [对RxJava的一点小小见解](https://github.com/funnywolfdadada/Blog/blob/master/RxJava/%E5%AF%B9RxJava%E7%9A%84%E4%B8%80%E7%82%B9%E5%B0%8F%E5%B0%8F%E8%A7%81%E8%A7%A3.md)
-- [一百行代码造一个 RecyclerView.Adapter 轮子](https://github.com/funnywolfdadada/Blog/blob/master/SimpleAdapter/%E4%B8%80%E7%99%BE%E8%A1%8C%E4%BB%A3%E7%A0%81%E9%80%A0%E4%B8%80%E4%B8%AARecyclerView.Adapter%E8%BD%AE%E5%AD%90.md)
+- [对RxJava的一点小小见解](https://juejin.im/post/5d0ef139518825322609b12f)
+- [一百行代码造一个 RecyclerView.Adapter 轮子](https://juejin.im/post/5e773cb8518825494822eabd)
+- [仿写豆瓣详情页（一）开篇](https://juejin.im/post/5ea3f88b6fb9a03c8b4c1ed2)  
+- [仿写豆瓣详情页（二）底部浮层](https://juejin.im/post/5ea3fc386fb9a03c7a333830)  
+- [仿写豆瓣详情页（三）内容列表](https://juejin.im/post/5ea3ffade51d4546ca30ccec)  
