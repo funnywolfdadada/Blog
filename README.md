@@ -14,3 +14,6 @@
 - [仿写豆瓣详情页（一）开篇](https://juejin.im/post/5ea3f88b6fb9a03c8b4c1ed2)  
 - [仿写豆瓣详情页（二）底部浮层](https://juejin.im/post/5ea3fc386fb9a03c7a333830)  
 - [仿写豆瓣详情页（三）内容列表](https://juejin.im/post/5ea3ffade51d4546ca30ccec)  
+- [仿写豆瓣详情页（四）弹性布局](https://juejin.im/post/5eb2c471e51d454d980e3db7)  
+- [仿写豆瓣详情页（五）联动和其他细节](https://juejin.im/post/5eb2c552e51d454dd94067fb)  
+
